@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Tong</string>
+    <string name="create_account"><font color="#00ff00">text</font></string>
+    <string name="email">ইমেইল দিন</string>
+    <string name="password">পাসওয়ার্ড দিন</string>
+    <string name="login">লগিন করুন</string>
+    <string name="username">ব্যবহারকারীর নাম</string>
+    <string name="register">রেজিস্টার করুন</string>
+    <string name="back_to_login">লগিন এ ফিরে যান</string>
+</resources>
