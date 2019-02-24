@@ -7,4 +7,18 @@
     <string name="username">ব্যবহারকারীর নাম</string>
     <string name="register">রেজিস্টার করুন</string>
     <string name="back_to_login">লগিন এ ফিরে যান</string>
+
+    <string name="feedbacktype1">Praise</string>
+    <string name="feedbacktype2">Gripe</string>
+    <string name="feedbacktype3">Suggestion</string>
+    <string name="feedbacktype4">Bug</string>
+
+    <string-array name="feedbacktypelist">
+        <item>@string/feedbacktype1</item>
+        <item>@string/feedbacktype2</item>
+        <item>@string/feedbacktype3</item>
+        <item>@string/feedbacktype4</item>
+    </string-array>
+
+
 </resources>

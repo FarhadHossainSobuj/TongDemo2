@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //Check user input is correct or not
+//                Check user input is correct or not
                 if (validate()) {
 
                     //Get values from EditText fields

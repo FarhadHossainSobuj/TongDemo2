@@ -16,32 +16,53 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "tong.db";
 
     //DATABASE VERSION
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 3;
 
-    //TABLE NAME
+    //TABLE NAMES
     public static final String TABLE_USERS = "users";
+    public static final String TABLE_PRODUCT = "product";
 
     //TABLE USERS COLUMNS
     //ID COLUMN @primaryKey
-    public static final String KEY_ID = "id";
-
+    public static final String KEY_ID = "_id";
     //COLUMN user name
     public static final String KEY_USER_NAME = "username";
-
     //COLUMN email
     public static final String KEY_EMAIL = "email";
-
     //COLUMN password
     public static final String KEY_PASSWORD = "password";
+
+    //TABLE Product COLUMNS
+    public static final String PRODUCT_ID = "_id";
+    //COLUMN productname
+    public static final String PRODUCT_NAME = "productName";
+    //COLUMN category
+    public static final String CATEGORY = "category";
+    //COLUMN quantity
+    public static final String QUANTITY = "quantity";
+    //COLUMN purchase price
+    public static final String PURCHASE_PRICE = "purchase_price";
+    //COLUMN sell_Price
+    public static final String SELL_PRICE = "sell_price";
 
     //SQL for creating users table
     public static final String SQL_TABLE_USERS = " CREATE TABLE " + TABLE_USERS
             + " ( "
-            + KEY_ID + " INTEGER PRIMARY KEY, "
+            + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + KEY_USER_NAME + " TEXT, "
             + KEY_EMAIL + " TEXT, "
             + KEY_PASSWORD + " TEXT"
-            + " ) ";
+            + " ); ";
+
+    public static final String SQL_TABLE_PRODUCT = " CREATE TABLE " + TABLE_PRODUCT
+            + " ( "
+            + PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + PRODUCT_NAME + " TEXT, "
+            + CATEGORY + " TEXT, "
+            + QUANTITY + " INTEGER,"
+            + PURCHASE_PRICE + " REAL,"
+            + SELL_PRICE + " REAL"
+            + " ) ;";
 
 
     public SqliteHelper(Context context) {
@@ -52,13 +73,17 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //Create Table when oncreate gets called
         sqLiteDatabase.execSQL(SQL_TABLE_USERS);
+        sqLiteDatabase.execSQL(SQL_TABLE_PRODUCT);
 
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         //drop table to create new one if database version updated
-        sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_USERS);
+
+        db.execSQL(" DROP TABLE IF EXISTS " + TABLE_USERS);
+        db.execSQL(" DROP TABLE IF EXISTS " + TABLE_PRODUCT);
+        onCreate(db);
     }
 
     //using this method we can add users to user table
@@ -81,6 +106,32 @@ public class SqliteHelper extends SQLiteOpenHelper {
 
         // insert row
         long todo_id = db.insert(TABLE_USERS, null, values);
+    }
+
+    public void addProduct(Product product) {
+
+        //get writable database
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //create content values to insert
+        ContentValues values = new ContentValues();
+
+        //Put username in  @values
+        values.put(PRODUCT_ID, product.getId());
+        values.put(PRODUCT_NAME, product.getProductName());
+
+        //Put email in  @values
+        values.put(CATEGORY, product.getCategory());
+
+        //Put password in  @values
+        values.put(QUANTITY, product.getQuantity());
+        values.put(PURCHASE_PRICE, product.getPurchasePrice());
+        values.put(SELL_PRICE, product.getSellPrice());
+
+        // insert row
+        long id = db.insert(TABLE_PRODUCT, null, values);
+        db.close();
+
     }
 
     public User Authenticate(User user) {
@@ -120,5 +171,10 @@ public class SqliteHelper extends SQLiteOpenHelper {
 
         //if email does not exist return false
         return false;
+    }
+    public void closeDB() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        if (db != null && db.isOpen())
+            db.close();
     }
 }
