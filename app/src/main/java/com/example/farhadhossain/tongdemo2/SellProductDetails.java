@@ -1,8 +1,5 @@
 package com.example.farhadhossain.tongdemo2;
 
-import android.content.Intent;
-import android.os.Handler;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,22 +10,22 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class InputProductDetails extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class SellProductDetails extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     String[] categories = { "Tea","Bread", "Cigarate", "Banana", "Biscuit","Chips", "Bakery"};
-    private EditText productName, quantity, purchasePrice, sellPrice;
+    String[] names = { "Tea","Bread", "Cigarate", "Banana", "Biscuit","Chips", "Bakery"};
+
+    private EditText productName, quantity;
     Button saveDetails;
     private static String catG;
     SqliteHelper sqliteHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.input_product_details);
+        setContentView(R.layout.activity_sell_product_details);
         sqliteHelper = new SqliteHelper(getApplicationContext());
 
         productName = (EditText) findViewById(R.id.productName);
         quantity = (EditText) findViewById(R.id.quantity);
-        purchasePrice = (EditText) findViewById(R.id.purchasePrice);
-        sellPrice = (EditText) findViewById(R.id.sellPrice);
         saveDetails = (Button) findViewById(R.id.buttonSendFeedback);
 
 
@@ -58,19 +55,15 @@ public class InputProductDetails extends AppCompatActivity implements AdapterVie
 
                 String productNames = productName.getText().toString();
                 int quanTity = Integer.parseInt(quantity.getText().toString());
-                double buyPrice = Double.parseDouble(purchasePrice.getText().toString());
-                double salePrice = Double.parseDouble(sellPrice.getText().toString());
 
                 try {
-                    sqliteHelper.addProduct(new Product(null, productNames, catG, quanTity, buyPrice, salePrice));
+                    sqliteHelper.sellProduct(new Product(null, productNames, catG, quanTity));
                     productName.setText("");
                     quantity.setText("");
-                    purchasePrice.setText("");
-                    sellPrice.setText("");
-                    Toast.makeText(InputProductDetails.this, "Data Added", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SellProductDetails.this, "Product Sold", Toast.LENGTH_SHORT).show();
                 } catch (Exception e){
 
-                    Toast.makeText(InputProductDetails.this, "Product is not Added ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SellProductDetails.this, "Product is not Sold ", Toast.LENGTH_SHORT).show();
 
                 }
 

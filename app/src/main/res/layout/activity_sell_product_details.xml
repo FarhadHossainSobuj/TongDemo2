@@ -103,70 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="5dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:textAlignment="center"
-        android:background="#ffffff"
-        >
-        <TextView
-            android:id="@+id/purchasePriceText"
-            android:layout_width="wrap_content"
-            android:text="Purchase price :"
-            android:textStyle="bold"
-            android:layout_marginLeft="8dp"
-            android:layout_weight="1"
-            android:textSize="18sp"
-            android:padding="16dp"
-            android:background="@color/appColor"
-            android:textColor="#fff"
-            android:layout_height="wrap_content"
-            />
-        <EditText
-            android:id="@+id/purchasePrice"
-            android:layout_weight="2"
-            android:hint="purchase price"
-            android:inputType="number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="left"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="5dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:textAlignment="center"
-        android:background="#ffffff"
-        >
-        <TextView
-            android:id="@+id/sellPriceText"
-            android:layout_width="wrap_content"
-            android:text="Sell Price :"
-            android:textStyle="bold"
-            android:layout_marginLeft="8dp"
-            android:layout_weight="1"
-            android:textSize="18sp"
-            android:padding="16dp"
-            android:background="@color/appColor"
-            android:textColor="#fff"
-            android:layout_height="wrap_content"
-            />
-        <EditText
-            android:id="@+id/sellPrice"
-            android:layout_weight="2"
-            android:hint="sell price"
-            android:inputType="number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="left" />
-    </LinearLayout>
+
     <LinearLayout
         android:layout_marginTop="5dp"
         android:layout_weight="1"
@@ -179,7 +116,7 @@
         <Button
             android:id="@+id/buttonSendFeedback"
             android:layout_height="wrap_content"
-            android:text="Save Product"
+            android:text="Sell Product"
             android:layout_width="fill_parent"
             android:layout_marginBottom="5dp"
             android:background="#ffffff">

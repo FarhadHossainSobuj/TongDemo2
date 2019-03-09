@@ -133,6 +133,29 @@ public class SqliteHelper extends SQLiteOpenHelper {
         db.close();
 
     }
+    public void sellProduct(Product product) {
+
+        //get writable database
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //create content values to insert
+        ContentValues values = new ContentValues();
+
+        //Put username in  @values
+        values.put(PRODUCT_ID, product.getId());
+        values.put(PRODUCT_NAME, product.getProductName());
+
+        //Put email in  @values
+        values.put(CATEGORY, product.getCategory());
+
+        //Put password in  @values
+        values.put(QUANTITY, product.getQuantity());
+
+        // insert row
+        long id = db.update(TABLE_PRODUCT, values, product.productName+"=?",new String[]{String.valueOf(product.getQuantity())});
+        db.close();
+
+    }
 
     public User Authenticate(User user) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -176,5 +199,23 @@ public class SqliteHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         if (db != null && db.isOpen())
             db.close();
+    }
+
+    public String databasetostring(){
+        String dbstring="\n";
+        SQLiteDatabase db = getWritableDatabase();
+        //String query = "SELECT * FROM" + TABLE_TASKS +"WHERE 1";
+        String query = "SELECT * FROM " + TABLE_PRODUCT + " WHERE 1";
+        Cursor c = db.rawQuery(query,null);
+        c.moveToFirst();
+        while (!c.isAfterLast()){
+            if((c.getString(c.getColumnIndex("productName"))!=null) ){
+                dbstring += String.format(" %s %12s %s - %s - %s",c.getString(c.getColumnIndex("_id")),c.getString(c.getColumnIndex("productName")), c.getString(c.getColumnIndex("quantity")),c.getString(c.getColumnIndex("purchase_price")),c.getString(c.getColumnIndex("sell_price")));
+                dbstring += "\n";
+            }
+            c.moveToNext();
+        }
+        db.close();
+        return dbstring;
     }
 }

@@ -48,29 +48,29 @@
         >
 
         <Button
+            android:id="@+id/showData"
+            android:layout_width="150dp"
+            android:layout_height="160dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/ruti"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="পণ্য তালিকা"
+            android:textColor="#fff" />
+
+        <Button
             android:id="@+id/report"
             android:layout_width="150dp"
             android:layout_height="160dp"
             android:background="@drawable/ruti"
             android:text="রিপোর্ট দেখুন"
             android:textSize="20sp"
+            android:layout_marginLeft="12dp"
             android:textStyle="bold"
             android:textColor="#fff"
 
             />
-
-        <Button
-            android:id="@+id/others"
-            android:layout_width="150dp"
-            android:layout_height="160dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:background="@drawable/ruti"
-            android:layout_marginLeft="12dp"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:text="অন্যান্য"
-            android:textColor="#fff" />
 
     </LinearLayout>
 
